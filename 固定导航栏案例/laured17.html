@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        #top{
+
+        }
+        #main{
+            margin: 0px 210px;
+        }
+    </style>
+    <script src="jquery-1.12.2.js"></script>
+    <script>
+        //页面加载完成后添加事件
+        $(function (){
+            //浏览器的滚动条上下移动的时候,设置页面中的nav的div固定在页面的顶部或者是回到原来的位置
+            //为浏览器的滚动注册事件
+            $(window).scroll(function () {
+                //获取页面在滚动条的向上卷曲值
+                var scrollTop = $(document).scrollTop();
+                //若向上卷曲值大于top的高度，则改变nav他的display
+                if(scrollTop>$("#top").height()){
+                    $("#nav").css("position","fixed").css("top", 0)
+                    //由于nav脱标，使得main会突然向上移动，所以这里讲main的上边距设置为nav的高度，防止突变效果
+                    $("#main").css("marginTop",$("#nav").height())
+                }else {
+                    $("#nav").css("position", "static")
+                        $("#main").css("marginTop",0)
+                    }
+                })
+        })
+    </script>
+</head>
+<body>
+    <div id="div">
+        <div id="top">
+            <img src="images/top.png" alt="">
+        </div>
+        <div id="nav">
+            <img src="images/nav.png" alt="">
+        </div>
+        <div id="main">
+            <img src="images/main.png" alt="">
+        </div>
+    </div>
+
+</body>
+</html>
